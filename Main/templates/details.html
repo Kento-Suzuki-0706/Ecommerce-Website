@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<section class="py-5" style="background-color:#222222;">
+    <div class="container px-4 px-lg-5 mt-5 pb-3">
+        <h1 class="pb-5" style="text-align: center; font-size: 60px; color: white;">Product Detail</h1>
+        <div class="card mb-5" style="max-width: 1000px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{url_for('static', filename='img/'+product.image)}}" class="img-fluid rounded-star my-md-5" 
+                style="min-width: 300px; min-height: 300px; text-align: center; padding: 20px 0px;">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body m-5">
+                  <h5 class="card-title ml-sm-4">{{product.name}}</h5>
+                  <p class="card-text ml-md-5">{{product.description}}</p>
+                  <p class="card-text"><small class="text-muted ml-sm-5">3-year warranty.</small></p>
+                </div>
+                <h3 class="ml-sm-5">{{ "$%.2f"|format(product.price) }}</h3>
+                
+                <form class="text-center pt-3 bg-dark" action="{{ url_for('main.order') }}">
+                    <input type="hidden" id="product_id" name="product_id" value="{{ product.id }}">
+                    <input class="btn btn-outline-light" type="submit" value="Add to Cart">
+                </form>
+                <div class="card-footer p-2 pt-0 border-top-0 bg-dark">
+                    <div class="text-center"><a class="btn btn-outline-light mt-auto" href="{{ url_for('main.index') }}">Back to Home</a></div>
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+    </div>
+  </section>
+
+{% endblock %}
